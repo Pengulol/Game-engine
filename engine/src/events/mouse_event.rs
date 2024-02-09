@@ -145,6 +145,7 @@ pub trait MouseScrolledEvent {
 	EVENT_CLASS_CATEGORY!(EventCategory::EventCategoryMouse | EventCategory::EventCategoryInput);
 	fn get_x_offset(&self) -> f32;
 	fn get_y_offset(&self) -> f32;
+	
 }
 
 impl MouseScrolledEvent for MouseScrolledEventStruct {

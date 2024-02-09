@@ -16,17 +16,7 @@ pub enum EventType {
     MouseMoved,
     MouseScrolled,
 }
-//create an enum class for the event category
-//an event can belong to multiple categories
 
-// pub enum EventCategory {
-//     None,
-//     EventCategoryApplication,
-//     EventCategoryInput,
-//     EventCategoryKeyboard,
-//     EventCategoryMouse,
-//     EventCategoryMouseButton,
-// }
 #[repr(u32)]
 pub enum EventCategory {
    None = 0,
@@ -37,7 +27,6 @@ pub enum EventCategory {
    EventCategoryMouseButton = 1<<4,
 }
 
-//impl bitor for EventCategory 
 
 impl std::ops::BitOr for EventCategory {
     type Output = u32;
@@ -69,19 +58,7 @@ macro_rules! EVENT_CLASS_CATEGORY {
 
         }
     };
-    // ($expression:expr) => {
-    //     // fn get_category_flags() -> u32 {
-    //     //       let mut flags = 0;
-    //     //         let mut categories = $expression;
-    //     //         while categories != 0 {
-    //     //             let category = categories & !(categories - 1);
-    //     //             flags |= category;
-    //     //             categories ^= category;
-    //     //         }
-    //     //         return flags;
-    //     // }
-        
-    // };
+
 }
 pub(crate) use EVENT_CLASS_CATEGORY;
 
@@ -96,12 +73,7 @@ pub trait Event {
     fn to_string_name(&self) -> &'static str{
         return self.get_name();
     }
-    // fn is_in_category(self:Self,category: EventCategory) -> bool {
-    //     return (Self::get_category_flags(self) & category as u32) != 0;
-    // }
-    // fn to_string_name(&self) -> &'static str{
-    //     return Self::get_name(self);
-    // }
+
 
 }
 pub struct EventStruct{
@@ -140,14 +112,11 @@ impl EventStruct {
 // }
 
 
-// pub trait EventDispatcher<T> {
-//     fn dispatch_event(event: T) -> bool{
-//         if event.get_event_type() == T::get_static_type() {
-//             event.handled = true;
-//             return true;
-//         }
-//         return false;
-//     }
+// pub trait EventDispatcher<T,F> {
+//     fn dispatch(&self, func: F) -> bool
+//     where
+//         T: Event,
+//         F: Fn(&T) -> bool;
 // }
 
 // pub struct EventDispatcherStruct
@@ -156,11 +125,9 @@ impl EventStruct {
 
 // }
 
-// impl EventDispatcher<T> for EventDispatcherStruct{
-//     pub fn dispatch<T,F>(&self, func: F) -> bool
-//     where
-//         T: Event,
-//         F: Fn(&T) -> bool
+// impl EventDispatcher<T,F> for EventDispatcherStruct{
+//     fn dispatch(&self, func: F) -> bool
+    
 //     {
 //         if self.event.get_event_type() == T::get_static_type() {
 //             self.event.handled = func(&self.event);
@@ -168,10 +135,13 @@ impl EventStruct {
 //         }
 //         return false;
 //     }
-//     pub fn new(event: dyn Event) -> EventDispatcher {
-//         EventDispatcher {
+       
+// }
+
+// impl EventDispatcherStruct {
+//     pub fn new(event: dyn Event) -> EventDispatcherStruct {
+//         EventDispatcherStruct {
 //             event: event,
 //         }
 //     }
-    
 // }

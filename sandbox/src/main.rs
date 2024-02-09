@@ -3,7 +3,6 @@ use engine::core::entry_point;
 use engine::core::logger_wrapper;
 use engine::events::application_event::*;
 use engine::events::event::Event;
-use engine::events::event::EventCategory;
 
 
 struct SandboxApplication;
