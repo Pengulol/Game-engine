@@ -8,7 +8,7 @@ extern  {
 #[no_mangle]
 pub fn entry_main() {
     unsafe {
-        let app = create_application();
+        let mut app = create_application();
         (*app).run();
     }
 
