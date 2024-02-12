@@ -1,6 +1,9 @@
 use engine::core::application::Application;
 use engine::core::entry_point;
 use engine::core::logger_wrapper;
+use engine::events::application_event::*;
+use engine::events::event::Event;
+
 
 struct SandboxApplication;
 
@@ -10,6 +13,9 @@ impl Application for SandboxApplication {
         SandboxApplication
     }
     fn run(&self) {
+        logger_wrapper::log_info("Running application");
+        let e=WindowResizeEventStruct::new( 1820, 980);
+        logger_wrapper::log_info(&e.to_string_name());
         loop {}
     }
 }

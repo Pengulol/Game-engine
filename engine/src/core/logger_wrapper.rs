@@ -5,7 +5,7 @@ use env_logger::Builder;
 
 pub struct SimpleLogger;
 
-impl log::Log for SimpleLogger {
+impl Log for SimpleLogger {
     fn enabled(&self, metadata: &Metadata) -> bool {
         metadata.level() <= LevelFilter::Info
     }
@@ -35,6 +35,7 @@ pub fn init_logger() {
 pub fn log_info(message: &str) {
     log::info!("{}", message);
 }
+
 
 pub fn log_warn(message: &str) {
     log::warn!("{}", message);
