@@ -8,7 +8,9 @@ edition = "2021"
 [dependencies]
 log.workspace = true
 env_logger.workspace = true
-glfw.workspace = true
-
+winit= {workspace = true , features = ["rwh_05"]}
+vulkano = {workspace = true , features = ["macros"]}
+vulkano-shaders = { workspace = true }
+anyhow = {workspace = true}
 
 

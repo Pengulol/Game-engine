@@ -41,20 +41,26 @@ use super::event::*;
         event: EventStruct,
     }
 
-    pub trait WindowCloseEvent {
-        EVENT_CLASS_TYPE!(WindowClose);
-        EVENT_CLASS_CATEGORY!(EventCategory::EventCategoryApplication);
-    }
+    // pub trait WindowCloseEvent {
+    //     EVENT_CLASS_TYPE!(WindowClose);
+    //     EVENT_CLASS_CATEGORY!(EventCategory::EventCategoryApplication);
+    // }
 
-    impl WindowCloseEvent for WindowCloseEventStruct {
-    }
+
+    // impl WindowCloseEvent for WindowCloseEventStruct {
+    // }
 
     impl WindowCloseEventStruct {
-        pub fn new(event: EventStruct) -> WindowCloseEventStruct {
+        pub fn new() -> WindowCloseEventStruct {
             return WindowCloseEventStruct {
-                event: event,
+                event: EventStruct::new(),
             };
         }
+    }
+    impl Event for WindowCloseEventStruct{
+        EVENT_CLASS_CATEGORY!(EventCategory::EventCategoryApplication);
+        EVENT_CLASS_TYPE!(WindowClose);
+        
     }
 
     pub struct AppTickEventStruct {

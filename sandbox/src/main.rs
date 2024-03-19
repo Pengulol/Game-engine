@@ -1,51 +1,54 @@
-use engine::core::application::{Application,ApplicationStruct};
-use engine::core::entry_point;
-use engine::core::logger_wrapper;
-use engine::events::application_event::*;
-use engine::events::event::Event;
+use engine::core::application::{Application,ApplicationStruct, WindowProps};
 
 
-struct SandboxApplication{
-    application_struct:ApplicationStruct,
-}
+// struct SandboxApplication{
+//     application_struct:ApplicationStruct,
+// }
 
-impl Application for SandboxApplication {
+// impl Application for SandboxApplication {
  
-    fn new() -> Self where Self: Sized {
-        let window: engine::platforms::windows::WindowsWindow = engine::window::Window::create_window(engine::window::WindowProperties::new("Sandbox", 1280, 720));
-        let app = ApplicationStruct {
-            m_window: Box::new(window),
-            m_running: true,
-        };
-        SandboxApplication {
-            application_struct: app,
-        }
+//     fn new() -> Self where Self: Sized {
+//         let window: engine::window::Window = engine::window::Window::new();
+
+//         SandboxApplication {
+//             application_struct:ApplicationStruct {
+//                 m_window: window,
+//                 m_running: true,
+//             },
+//         }
 
         
-    }
-    fn run(&mut self) {
-        logger_wrapper::log_info("Running application");
-        while self.application_struct.m_running {
-            self.application_struct.m_window.on_update();
-        }
-    }
-}
+//     }
+//     fn run(self) {
+//         logger_wrapper::log_info("Running application");
+//         while self.application_struct.m_running {
+//             self.application_struct.m_window.run();
+   
+//         }
+//     }
+// }
 
-#[no_mangle]
-pub extern fn create_application() -> Box<dyn Application> {
-    logger_wrapper::init_logger();
+// #[no_mangle]
+// pub extern fn create_application() -> Box<dyn Application> {
+//     logger_wrapper::init_logger();
 
-    logger_wrapper::log_info("Creating application");
-    let app = SandboxApplication::new(); // Instantiate the SandboxApplication struct
-    Box::new(app)
+//     logger_wrapper::log_info("Creating application");
+//     let app = SandboxApplication::new(); // Instantiate the SandboxApplication struct
+//     Box::new(app)
     
 
-}
+// }
 
 pub fn main() {
 
-       entry_point::entry_main();
-    
+    let window_prop=WindowProps {
+        title: "Sandbox".to_string(),
+        width: 800.0,
+        height: 600.0,
+        resizable: true,
+        fullscreen: false,
+    };
+    ApplicationStruct::new(window_prop).run();    
 }
 
 

@@ -4,8 +4,8 @@ members = ["engine","sandbox"]
 [workspace.dependencies]
 log = "0.4"
 env_logger = "0.10"
-glfw = "0.54.0"
-
-[glfw]
-default-features = false
+winit = "0.29"
+vulkano = "0.34"
+vulkano-shaders = "0.34"
+anyhow = "1.0.81"
 
